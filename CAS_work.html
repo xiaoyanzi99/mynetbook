@@ -1,0 +1,834 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>氩站作业</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maxmum-scale=1.0, initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	// <script src="highstock/code/highstock.js"></script>
+	<style>
+		h3{width: 99.9%;font-size:20px;}
+		.borders{width:99.3%;}
+		h3,h5{margin-bottom:0;}
+		.text-width{width: 99.6%}
+		body {position: relative;}
+		.height{line-height:40px;}
+		.text-right{padding-right:0;}
+		h3,h5,.borders{border:1px solid #ccc; border-bottom:0;}
+		.bg-info {line-height:28px;text-align: center;color:#000;}
+		#section1 {padding-top:50px;height:700px;color: black; background-color: white;}
+		#section2 {padding-top:50px;height:500px;color: black; background-color: white;}
+		.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th{text-align: center;font-size: 14px;border-bottom-width: 0px;}
+	</style>
+	<script type="text/javascript">
+		$("#container").ready(function(){
+		 	/*为图表配置标题：*/
+		 	var title = {
+					text: '曲线趋势 '   
+			};
+			
+			/*为图表配置副标题：*/
+			var subtitle = {
+					text: 'Source: runoob.com'
+			};
+			/*配置要在 X 轴显示的项。 */
+			var xAxis = {
+					 categories: ['一月', '二月', '三月', '四月', '五月', '六月'
+									,'七月', '八月', '九月', '十月', '十一月', '十二月']};
+		 	/*配置要在 Y 轴显示的项。 */
+		 	var yAxis = {
+			   title: {
+			      text: 'Temperature (\xB0C)'
+			   },
+			   plotLines: [{
+			      value: 0,
+			      width: 1,
+			      color: '#808080'
+			   }]
+			};
+			
+			/*配置提示信息：*/
+			var tooltip = {
+			   valueSuffix: '\xB0C'
+			}
+			
+			
+			/*配置图表向右对齐：*/
+			var legend = {
+			   layout: 'vertical',
+			   align: 'right',
+			   verticalAlign: 'middle',
+			   borderWidth: 0
+			};
+			
+			/*配置图表要展示的数据。每个系列是个数组，每一项在图片中都会生成一条曲线。*/
+			var series =  [
+			   {
+			      name: 'Message',
+			      data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 
+			         26.5, 23.3, 18.3, 13.9, 9.6]
+			   }
+			];
+				   var json = {};
+					   json.title = title;
+					   json.subtitle = subtitle;
+					   json.xAxis = xAxis;
+					   json.yAxis = yAxis;
+					   json.tooltip = tooltip;
+					   json.legend = legend;
+					   json.series = series;
+	
+					$('#container').highcharts(json);			
+		 });
+		
+	</script>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div>
+			<div class="collapse navbar-collapse dropdown" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="#section1">氩站监控图</a></li>
+					<li><a href="#section2">吹氩实绩</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</nav>    
+	<div id="section1" class="container-fluid">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-5 column">
+						<h5 class="bg-info text-muted text-width">计划作业</h5>
+						<div class="row clearfix">
+							<div class="col-md-12 column text-right" data-spy="scroll"  data-target="#navbar-example" data-offset="0"
+										style="height:200px; overflow:auto;">
+								<table class="table table-condensed table-bordered table-responsive table-hover">
+									<thead>
+										<tr>
+											<th>
+												计划炉号
+											</th>
+											<th>
+												钢种
+											</th>
+											<th>
+												交付时间
+											</th>
+											<th>
+												状态
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												1
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												01/04/2012
+											</td>
+											<td>
+												Default
+											</td>
+										</tr>
+										<tr class="success">
+											<td>
+												1
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												01/04/2012
+											</td>
+											<td>
+												Approved
+											</td>
+										</tr>
+										<tr class="error">
+											<td>
+												2
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												02/04/2012
+											</td>
+											<td>
+												Declined
+											</td>
+										</tr>
+										<tr class="warning">
+											<td>
+												3
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												03/04/2012
+											</td>
+											<td>
+												Pending
+											</td>
+										</tr>
+										<tr class="info">
+											<td>
+												4
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												04/04/2012
+											</td>
+											<td>
+												Call in to confirm
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<div class="col-md-6 column">
+								<h5 class="bg-info text-muted borders">成分标准</h5>
+								<div class="row clearfix">
+									<div class="col-md-12 column text-right" data-spy="scroll"  data-target="#navbar-example" data-offset="0"
+										style="height:180px; overflow:auto;">
+										<table class="table table-condensed table-bordered table-responsive table-hover">
+											<thead>
+												<tr>
+													<th>
+														编号
+													</th>
+													<th>
+														产品
+													</th>
+													<th>
+														交付时间
+													</th>
+													<th>
+														状态
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														1
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														01/04/2012
+													</td>
+													<td>
+														Default
+													</td>
+												</tr>
+												<tr class="success">
+													<td>
+														1
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														01/04/2012
+													</td>
+													<td>
+														Approved
+													</td>
+												</tr>
+												<tr class="error">
+													<td>
+														2
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														02/04/2012
+													</td>
+													<td>
+														Declined
+													</td>
+												</tr>
+												<tr class="warning">
+													<td>
+														3
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														03/04/2012
+													</td>
+													<td>
+														Pending
+													</td>
+												</tr>
+												<tr class="info">
+													<td>
+														4
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														04/04/2012
+													</td>
+													<td>
+														Call in to confirm
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<h5 class="bg-info text-muted borders">投料指示</h5>
+								<div class="row clearfix">
+									<div class="col-md-12 column text-right" data-spy="scroll"  data-target="#navbar-example" data-offset="0"
+										style="height:180px; overflow:auto;">
+										<table class="table table-condensed table-bordered table-responsive table-hover">
+											<thead>
+												<tr>
+													<th>
+														编号
+													</th>
+													<th>
+														产品
+													</th>
+													<th>
+														交付时间
+													</th>
+													<th>
+														状态
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														1
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														01/04/2012
+													</td>
+													<td>
+														Default
+													</td>
+												</tr>
+												<tr class="success">
+													<td>
+														1
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														01/04/2012
+													</td>
+													<td>
+														Approved
+													</td>
+												</tr>
+												<tr class="error">
+													<td>
+														2
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														02/04/2012
+													</td>
+													<td>
+														Declined
+													</td>
+												</tr>
+												<tr class="warning">
+													<td>
+														3
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														03/04/2012
+													</td>
+													<td>
+														Pending
+													</td>
+												</tr>
+												<tr class="info">
+													<td>
+														4
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														04/04/2012
+													</td>
+													<td>
+														Call in to confirm
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 column">
+								<h5 class="bg-info text-muted borders">成分信息</h5>
+								<div class="row clearfix">
+									<div class="col-md-12 column text-right" data-spy="scroll"  data-target="#navbar-example" data-offset="0"
+										style="height:180px; overflow:auto;">
+										<table class="table table-bordered table-responsive table-hover">
+											<thead>
+												<tr>
+													<th>
+														编号
+													</th>
+													<th>
+														产品
+													</th>
+													<th>
+														交付时间
+													</th>
+													<th>
+														状态
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														1
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														01/04/2012
+													</td>
+													<td>
+														Default
+													</td>
+												</tr>
+												<tr class="success">
+													<td>
+														1
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														01/04/2012
+													</td>
+													<td>
+														Approved
+													</td>
+												</tr>
+												<tr class="error">
+													<td>
+														2
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														02/04/2012
+													</td>
+													<td>
+														Declined
+													</td>
+												</tr>
+												<tr class="warning">
+													<td>
+														3
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														03/04/2012
+													</td>
+													<td>
+														Pending
+													</td>
+												</tr>
+												<tr class="info">
+													<td>
+														4
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														04/04/2012
+													</td>
+													<td>
+														Call in to confirm
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<h5 class="bg-info text-muted borders">投料指示</h5>
+								<div class="row clearfix">
+									<div class="col-md-12 column text-right" data-spy="scroll"  data-target="#navbar-example" data-offset="0"
+										style="height:180px; overflow:auto;">
+										<table class="table table-hover table-bordered table-responsive table-condensed">
+											<thead>
+												<tr>
+													<th>
+														编号
+													</th>
+													<th>
+														产品
+													</th>
+													<th>
+														交付时间
+													</th>
+													<th>
+														状态
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														1
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														01/04/2012
+													</td>
+													<td>
+														Default
+													</td>
+												</tr>
+												<tr class="success">
+													<td>
+														1
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														01/04/2012
+													</td>
+													<td>
+														Approved
+													</td>
+												</tr>
+												<tr class="error">
+													<td>
+														2
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														02/04/2012
+													</td>
+													<td>
+														Declined
+													</td>
+												</tr>
+												<tr class="warning">
+													<td>
+														3
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														03/04/2012
+													</td>
+													<td>
+														Pending
+													</td>
+												</tr>
+												<tr class="info">
+													<td>
+														4
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														04/04/2012
+													</td>
+													<td>
+														Call in to confirm
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-7 column">
+						<h5 class="bg-info text-muted text-width">功能操作</h5>
+						<div class="row clearfix">
+							<div class="col-md-12 column" data-spy="scroll"  data-target="#navbar-example" data-offset="0"
+								style="overflow:auto;">
+								<button type="button" class="btn btn-default btn-primary btn-sm" style="display:inline-block;height: 35px;width: 70px;">开始吹氩</button>
+								<button type="button" class="btn btn-default btn-primary btn-sm" style="display:inline-block;height: 35px;width: 70px;">结束吹氩</button>
+								<button type="button" class="btn btn-default btn-primary btn-sm" style="display:inline-block;height: 35px;width: 70px;">钢包进站</button>
+								<button type="button" class="btn btn-default btn-primary btn-sm" style="display:inline-block;height: 35px;width: 70px;">钢包出站</button>
+								<button type="button" class="btn btn-default btn-primary btn-sm" style="display:inline-block;height: 35px;width: 70px;">作业指导</button>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<div class="col-md-12 column" data-spy="scroll"  data-target="#navbar-example" data-offset="0"
+								style="overflow:auto;">
+								<h5 class="bg-info text-muted text-width">氩站图</h5>
+								<div class="row clearfix">
+									<div class="col-md-12 column">
+										<img style="width: 200px;" src="img/cas.png" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<div class="col-md-12 column">
+								<h5 class="bg-info text-muted text-width">参数</h5>
+								<div class="row clearfix">
+									<div class="col-md-12 column text-right" data-spy="scroll"  data-target="#navbar-example" data-offset="0"
+										style="height:120px; overflow:auto;">
+										<table class="table table-hover table-bordered table-responsive table-condensed">
+											<thead>
+												<tr>
+													<th>
+														编号
+													</th>
+													<th>
+														产品
+													</th>
+													<th>
+														交付时间
+													</th>
+													<th>
+														状态
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														1
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														01/04/2012
+													</td>
+													<td>
+														Default
+													</td>
+												</tr>
+												<tr class="success">
+													<td>
+														1
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														01/04/2012
+													</td>
+													<td>
+														Approved
+													</td>
+												</tr>
+												<tr class="error">
+													<td>
+														2
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														02/04/2012
+													</td>
+													<td>
+														Declined
+													</td>
+												</tr>
+												<tr class="warning">
+													<td>
+														3
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														03/04/2012
+													</td>
+													<td>
+														Pending
+													</td>
+												</tr>
+												<tr class="info">
+													<td>
+														4
+													</td>
+													<td>
+														TB - Monthly
+													</td>
+													<td>
+														04/04/2012
+													</td>
+													<td>
+														Call in to confirm
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<div class="col-md-12 column">
+								<h5 class="bg-info text-muted text-width">曲线</h5>
+								<div class="row clearfix">
+									<div class="col-md-12 column">
+										<div id="container" style="height:200px;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="section2" class="container-fluid">
+		<h3 class="bg-info text-muted height">吹氩实绩</h3>
+		<div class="row clearfix">
+			<div class="col-md-12 column text-right" data-spy="scroll"  data-target="#navbar-example" data-offset="0"
+				style="height:200px; overflow:auto;">
+				<table class="table table-hover table-bordered table-responsive table-condensed">
+					<thead>
+						<tr>
+							<th>
+								编号
+							</th>
+							<th>
+								产品
+							</th>
+							<th>
+								交付时间
+							</th>
+							<th>
+								状态
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								1
+							</td>
+							<td>
+								TB - Monthly
+							</td>
+							<td>
+								01/04/2012
+							</td>
+							<td>
+								Default
+							</td>
+						</tr>
+						<tr class="success">
+							<td>
+								1
+							</td>
+							<td>
+								TB - Monthly
+							</td>
+							<td>
+								01/04/2012
+							</td>
+							<td>
+								Approved
+							</td>
+						</tr>
+						<tr class="error">
+							<td>
+								2
+							</td>
+							<td>
+								TB - Monthly
+							</td>
+							<td>
+								02/04/2012
+							</td>
+							<td>
+								Declined
+							</td>
+						</tr>
+						<tr class="warning">
+							<td>
+								3
+							</td>
+							<td>
+								TB - Monthly
+							</td>
+							<td>
+								03/04/2012
+							</td>
+							<td>
+								Pending
+							</td>
+						</tr>
+						<tr class="info">
+							<td>
+								4
+							</td>
+							<td>
+								TB - Monthly
+							</td>
+							<td>
+								04/04/2012
+							</td>
+							<td>
+								Call in to confirm
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
